@@ -12,7 +12,7 @@
   <p>Hi! You can find all my projects here and on my github:</p>
   <ul>
     <li><a href="https://github.com/axynthor">https://github.com/axynthor</a></li>
-    <li><a href="https://x.com/home">https://x.com/home</a></li>
+    <li><a href="https://x.com/home">https://x.com/</a></li>
   </ul>
 
   <hr>
@@ -20,5 +20,36 @@
   <h2>Main project</h2>
   <p><a href="https://github.com/axynthor/autotux">https://github.com/axynthor/autotux</a></p>
   <p>Basically autohotkey for linux! Just better! Maybe even for mac..?</p>
+
+  <hr>
+
+  <h2>Donate</h2>
+  <p>If you find my projects useful, consider donating so I can keep making more cool shit for free and buying more toys for my kids :)</p>
+  <p>BTC: <code id="btc-address">Coming soon...</code></p>
+  <button type="button" id="copy-btc">[ Copy ]</button>
+  <p id="copy-status" aria-live="polite"></p>
+
+  <script>
+    const address = document.getElementById('btc-address');
+    const button = document.getElementById('copy-btc');
+    const status = document.getElementById('copy-status');
+
+    button.addEventListener('click', async () => {
+      const text = address.textContent.trim();
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const input = document.createElement('textarea');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+      }
+
+      status.textContent = 'Copied.';
+    });
+  </script>
 </body>
 </html>
